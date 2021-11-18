@@ -1,35 +1,25 @@
----
-name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
+|name|	about	|title|	labels|	assignees|
+|----|----|----|----|----|
+|버그 보고	|개선에 도움이 되는 보고서 작성	| | | |		
 
----
+##### 무슨 버그인지 명확하고 간결하게 설명합니다.
+여기서만 튜토리얼의 기능과 관련된 문제를 만드십시오. 기타 모든 질문/문제//버그는 MONAI의 [주 저장소](https://github.com/Project-MONAI/MONAI)를 참조하십시오, MONAI 버그(노트북의 문제만이 아니라)에 대해서는 이슈를 만들어 주세요. 질문은 [토론 탭](https://github.com/Project-MONAI/MONAI/discussions)을 사용하십시오.
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+##### To Reproduce, 동작을 재현하는 단계:
+1. Go to ‘…’
+2. Install ‘……’
+3. Run commands ‘……’
 
-Please only create issues here relating to the functioning of the tutorials. For all other questions/problems/bugs, please refer to MONAI's [main repository](https://github.com/Project-MONAI/MONAI). For MONAI bugs (not just a problem in the notebook), please create an [issue](https://github.com/Project-MONAI/MONAI/issues). For questions, please use the [Discussions tab](https://github.com/Project-MONAI/MONAI/discussions).
+##### Expected behavior, 예상되는 일에 대한 명확하고 간결한 설명.
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Install '....'
-3. Run commands '....'
+##### Screenshots, 해당되는 경우 문제를 설명하는 데 도움이 되는 스크린샷을 추가합니다.
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+##### 환경(다음 정보를 입력하십시오):
+-	OS
+-	Python version
+-	MONAI version [e.g. git commit hash]
+-	CUDA/cuDNN version
+-	GPU models and configuration
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+##### Additional context 문제에 대한 다른 문구를 추가합니다.
 
-**Environment (please complete the following information):**
- - OS
- - Python version
- - MONAI version [e.g. git commit hash]
- - CUDA/cuDNN version
- - GPU models and configuration
-
-**Additional context**
-Add any other context about the problem here.
