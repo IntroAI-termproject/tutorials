@@ -1,12 +1,7 @@
----
-name: Question
-about: Question relating to MONAI
-title: ''
-labels: ''
-assignees: ''
----
+|name|	about	|title|	labels|	assignees|
+|----|----|----|----|----|
+|질문	|MONAI에 관한 질문	| | | |		
 
-**Please use MONAI's Discussions tab**
-For questions relating to MONAI usage, please do not create an issue.
+MONAI의 토론 탭을 사용하십시오. MONAI 사용과 관련된 질문은 이슈를 만들지 마십시오.
 
-Instead, use [MONAI's GitHub Discussions tab](https://github.com/Project-MONAI/MONAI/discussions). This can be found on the MONAI repository's main page (not the tutorials) next to Issues and Pull Requests along the top.
+대신 [MONAI의 Github 토론 탭](https://github.com/Project-MONAI/MONAI/discussions)을 사용하십시오. MONAI 저장소의 기본 페이지(튜토리얼이 아닙니다) 상단의 이슈 및 Pull Requests에서 확인할 수 있습니다.
