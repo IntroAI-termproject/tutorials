@@ -1,11 +1,11 @@
-Fixes # .
+Fixes #.
 
-### Description
-A few sentences describing the changes proposed in this pull request.
+### 설명(Description)
+Pull request에서 제안된 변경 사항을 설명하는 문장입니다.
 
-### Status
-**Ready/Work in progress/Hold**
+### 상태(Status)
+#### 준비(Ready) / 작업 진행 중(Work in progress) / 보류(Hold)
 
-### Checks
+### 검사(Checks)
 <!--- Put an `x` in all the boxes that apply, and remove the not applicable items -->
-- [ ] Notebook runs automatically `./runner [-p <regex_pattern>]`
+- [ ] 노트북이 자동으로 실행됩니다 `./runner [-p <regex_pattern]`
