@@ -1,30 +1,30 @@
-# Deepgrow Examples
-This folder contains examples to run train and validate a deepgrow 2D/3D model.
-It also has notebooks to run inference over trained model.
-<p align="center">
+## Deepgrow 예제
+
+이 폴더에는 Deepgrow 2D/3D 모델을 실행하고 검증하는 예가 포함되어 있습니다. 또한 훈련된 모델에 대해 추론을 실행할 수 있는 노트북도 있다.
+ 
+ <p align="center">
   <img src="../../figures/image_deepgrow_scheme.png" alt="deepgrow scheme")
 </p>
+ 
+다음을 기반으로 구성:
 
-implementation based on:
+Sakinis 등, 완전 컨볼루션 신경망을 통한 의료 영상의 대화형 분할.
+(2019) https://arxiv.org/abs/1903.08205
 
-Sakinis et al., Interactive segmentation of medical images through
-fully convolutional neural networks. (2019) https://arxiv.org/abs/1903.08205
+#### 1. 데이터
+Deepgrow 모델을 훈련하려면 데이터가 필요하다. 예에 사용되는 일부 공개 데이터 세트는 Medical Segmentation Decathlon 또는 Synapse에서 다운로드할 수 있다.
 
-### 1. Data
+#### 2. 질문과 버그
+- MONAI 사용과 관련된 질문은 MONAI의 주 저장소에 있는 토론 탭을 참조하십시오.
+- MONAI 기능과 관련된 버그는 주 저장소에서 이슈를 만드십시오.
+- 튜토리얼 실행과 관련된 버그의 경우 이 저장소에서 문제를 만드십시오.
 
-Training a deepgrow model requires data. Some public available datasets which are used in the examples can be downloaded from [Medical Segmentation Decathlon](https://drive.google.com/drive/folders/1HqEgzS8BV2c7xYNrZdEAnrHk7osJJ--2) or [Synapse](https://www.synapse.org/#!Synapse:syn3193805/wiki/217789).
+#### 3. 노트북 목록 및 예제
+[Prepare Your Data](https://github.com/Project-MONAI/tutorials/blob/master/deepgrow/ignite/prepare_dataset.py)
 
-### 2. Questions and bugs
+이 예는 표준 PyTorch 프로그램이며 사용자가 2D 또는 3D에 대한 교육 입력을 준비할 수 있도록 도와줍니다.
 
-- For questions relating to the use of MONAI, please us our [Discussions tab](https://github.com/Project-MONAI/MONAI/discussions) on the main repository of MONAI.
-- For bugs relating to MONAI functionality, please create an issue on the [main repository](https://github.com/Project-MONAI/MONAI/issues).
-- For bugs relating to the running of a tutorial, please create an issue in [this repository](https://github.com/Project-MONAI/Tutorials/issues).
-
-### 3. List of notebooks and examples
-#### [Prepare Your Data](./prepare_dataset.py)
-This example is a standard PyTorch program and helps user to prepare training input for 2D or 3D.
-
-```bash
+```
 # Run to know all possible options
 python ./prepare_dataset.py -h
 
@@ -34,7 +34,7 @@ python ./prepare_dataset.py
     --dataset_root MSD_Task09_Spleen \
     --dataset_json MSD_Task09_Spleen/dataset.json \
     --output       deepgrow/2D/MSD_Task09_Spleen
-
+    
 # Prepare dataset to train a 3D Deepgrow model
 python ./prepare_dataset.py
     --dimensions   3 \
@@ -43,18 +43,18 @@ python ./prepare_dataset.py
     --output       deepgrow/3D/MSD_Task09_Spleen
 ```
 
-#### [Deepgrow 2D Training](./train.py)
-This example is a standard PyTorch program and helps user to run training over pre-processed dataset for 2D.
-```bash
+[Deepgrow 2D Training](https://github.com/Project-MONAI/tutorials/blob/master/deepgrow/ignite/train.py)
+
+이 예는 표준 PyTorch 프로그램이며 사용자가 2D를 위해 사전 처리된 데이터 세트에 대한 교육을 실행할 수 있도록 도와줍니다.
+
+```
 # Run to know all possible options
 python ./train.py -h
-
 # Train a 2D Deepgrow model on single-gpu
 python ./train.py
     --input       deepgrow/2D/MSD_Task09_Spleen/dataset.json \
     --output      models/2D \
     --epochs      50
-
 # Train a 2D Deepgrow model on multi-gpu (NVIDIA)
 python -m torch.distributed.launch \
     --nproc_per_node=`nvidia-smi -L | wc -l` \
@@ -67,7 +67,6 @@ python -m torch.distributed.launch \
     --input       deepgrow/2D/MSD_Task09_Spleen/dataset.json \
     --output      models/2D \
     --epochs      50
-
 # After training to export/save as torch script model
 python ./train.py
     --input       models/2D/model.pt \
@@ -75,36 +74,36 @@ python ./train.py
     --export      true
 ```
 
-#### [Deepgrow 2D Validation](./validate.py)
-This example is a standard PyTorch program and helps user to run evaluation for a trained 2D model.
-```bash
+[Deepgrow 2D Validation](https://github.com/Project-MONAI/tutorials/blob/master/deepgrow/ignite/validate.py)
+
+이 예는 표준 PyTorch 프로그램이며 사용자가 훈련된 2D 모델에 대한 평가를 실행할 수 있도록 도와줍니다.
+
+```
 # Run to know all possible options
 python ./validate.py -h
-
 # Evaluate a 2D Deepgrow model
 python ./validate.py
     --input       deepgrow/2D/MSD_Task09_Spleen/dataset.json \
     --output      eval/2D \
     --model_path  models/2D/model.pt
 ```
+    
+[Deepgrow 2D Inference](https://github.com/Project-MONAI/tutorials/blob/master/deepgrow/ignite/inference.ipynb)
 
-#### [Deepgrow 2D Inference](./inference.ipynb)
-This notebook helps to run pre-transforms before running inference over a Deepgrow 2D model.
-It also helps to run post-transforms to get the final label mask.
+이 노트북은 Deepgrow 2D 모델에 대한 추론을 실행하기 전에 사전 변환을 실행하는 데 도움이 됩니다. 또한 변환 후 실행을 통해 최종 레이블 마스크를 얻을 수 있습니다.
 
+[Deepgrow 3D Training](https://github.com/Project-MONAI/tutorials/blob/master/deepgrow/ignite/train_3d.py)
 
-#### [Deepgrow 3D Training](./train_3d.py)
-This is an extension for [train.py](./train.py) that redefines basic default arguments to run 3D training.
-```bash
+이것은 3D 훈련을 실행하기 위한 기본 인수를 재정의한 train.py의 연장선입니다.
+
+```
 # Run to know all possible options
 python ./train_3d.py -h
-
 # Train a 3D Deepgrow model on single-gpu
 python ./train_3d.py
     --input       deepgrow/3D/MSD_Task09_Spleen/dataset.json \
     --output      models/3D \
     --epochs      100
-
 # Train a 3D Deepgrow model on multi-gpu (NVIDIA)
 python -m torch.distributed.launch \
     --nproc_per_node=`nvidia-smi -L | wc -l` \
@@ -117,34 +116,33 @@ python -m torch.distributed.launch \
     --input       deepgrow/3D/MSD_Task09_Spleen/dataset.json \
     --output      models/3D \
     --epochs      100
-
 # After training to export/save as torch script model
 python ./train_3d.py
     --input       models/3D/model.pt \
     --output      models/3D/model.ts \
     --export      true
 ```
+    
+[Deepgrow 3D Validation](https://github.com/Project-MONAI/tutorials/blob/master/deepgrow/ignite/validate_3d.py)
 
-#### [Deepgrow 3D Validation](./validate_3d.py)
-This is an extension for [validate.py](./validate.py) that redefines basic default arguments to run 3D validation.
-```bash
+3D 유효성 검사를 실행하기 위한 기본 인수를 재정의하는 Validate.py의 확장입니다
+
+```
 # Run to know all possible options
 python ./validate_3d.py -h
-
 # Evaluate a 3D Deepgrow model
 python ./validate_3d.py
     --input       deepgrow/3D/MSD_Task09_Spleen/dataset.json \
     --output      eval/3D \
     --model_path  models/3D/model.pt
 ```
+    
+[Deepgrow 3D Inference](https://github.com/Project-MONAI/tutorials/blob/master/deepgrow/ignite/inference_3d.ipynb)
 
-#### [Deepgrow 3D Inference](./inference_3d.ipynb)
-This notebook helps to run any pre-transforms before running inference over a Deepgrow 3D model.
-It also helps to run post-transforms to get the final label mask.
+이 노트북은 Deepgrow 3D 모델에 대한 추론을 실행하기 전에 사전 변환을 실행하는 데 도움이 됩니다. 또한 변환 후 실행을 통해 최종 레이블 마스크를 얻을 수 있습니다.
 
+[Deepgrow Stats](https://github.com/Project-MONAI/tutorials/blob/master/deepgrow/ignite/handler.py)
 
-#### [Deepgrow Stats](./handler.py)
-It contains basic ignite handler to capture region/organ-wise statistics, save snapshots, outputs while running train/validation over a dataset that has multi-label mask.
-By-default the handler is added as part of training/validation steps.
-
+다중 레이블 마스크가 있는 데이터 집합에 대해 트레인/유효성 검사를 실행하는 동안 지역/기관별 통계를 캡처하고, 스냅샷을 저장하고, 출력을 저장할 수 있는 기본 Ignite 핸들러를 포함합니다. 기본적으로 처리기는 교육/유효성 검사 단계의 일부로 추가됩니다.
+ 
 ![snashot](./stats.png)
